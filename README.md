@@ -1,4 +1,4 @@
-#Das Zeugnisblatt APP
+# Das Zeugnisblatt
 
 #### Basic CRUD App- Made with ❤️ in Flask By Alvison Hunter Arnuero - September 14th, 2020.
 
