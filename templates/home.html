@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block head %}
+{{ super() }} {% endblock %} {% block content %}
+<video autoplay muted loop id="myVideo">
+  <source
+    src="{{ url_for('static',filename='kiddos.mp4') }}"
+    type="video/mp4"
+  />
+
+  Your browser does not support HTML5 video.
+</video>
+
+<div class="content w-100">
+  <h1 class="display-4">Welcome to Das Zeugnisblatt</h1>
+  <p>
+    I started this app as a way of start learning Flask. This idea was based in
+    another project that I had started with ReactJS but I wanted it to see if
+    this could be replicated in this beatiful Python Framework and so far I can
+    assure you that it has been an amazing tool for a starter with python and
+    web frameworks. I am totally happy with the results so far and we certainly
+    gonna improve it and make it better as we get more strong in the flask
+    knowledge.
+  </p>
+  <!-- my old footer -->
+
+  <div id="row justify-content-end">
+    {% block footer %} &copy; Copyright December 30th, 2020 All rights reserved.
+    Made with
+    <b class="text-danger">❤️</b>
+    in Python using Flask by
+    <a href="http://alvisonhunter.com">Alvison Hunter Arnuero</a>. {% endblock
+    %}
+  </div>
+</div>
+
+{% endblock %}

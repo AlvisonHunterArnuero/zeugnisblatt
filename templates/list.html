@@ -1,0 +1,101 @@
+{% extends "base.html" %} {% block title %}Browse Students List.{% endblock %}
+{% block head %} {{ super() }} {% endblock %} {% block content %}
+<div class="row d-flex w-100 justify-content-end my-1 mx-0 px-0">
+  <form class="form-inline">
+    <div class="form-group">
+      <label for="exampleFormControlInput1"
+        ><i class="fa fa-search" aria-hidden="true"></i
+      ></label>
+      <input
+        type="text"
+        class="form-control mx-3"
+        id="exampleFormControlInput1"
+        placeholder="Type your Search Term"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Filter by City</label>
+      <select class="form-control mx-3" id="exampleFormControlSelect1">
+        <option>Jinotepe</option>
+        <option>Managua</option>
+        <option>Granada</option>
+        <option>Leon</option>
+        <option>Diriamba</option>
+        <option>Masaya</option>
+        <option>Chinandega</option>
+        <option>Matagalpa</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlSelect2">Filter by Teacher</label>
+      <select class="form-control mx-3" id="exampleFormControlSelect2">
+        <option>Guido van Rossum</option>
+        <option>William Gates</option>
+        <option>Yukihiro Matsumoto</option>
+        <option>James Gosling</option>
+        <option>Dennis Ritchie</option>
+        <option>Bjarne Stroustrup</option>
+        <option>Rasmus Lerdorf</option>
+        <option>Larry Wall</option>
+        <option>Brendan Eich</option>
+        <option>Niklaus Wirth</option>
+        <option>John McCarthy</option>
+      </select>
+    </div>
+  </form>
+</div>
+<div class="row justify-content-center pt-2">
+  <div class="table-responsive">
+    <table class="table table-bordered table-dark table-hover table">
+      <thead class="bg-dark text-center text-white text-uppercase">
+        <th scope="col">NAME</th>
+        <th scope="col">LAST NAME</th>
+        <th scope="col">FATHER</th>
+        <th scope="col">MOTHER</th>
+        <th scope="col">PHONE</th>
+        <th scope="col">AGE</th>
+        <th scope="col">GPA</th>
+        <th scope="col">ADDRESS</th>
+        <th scope="col">CITY</th>
+        <th scope="col">PIN</th>
+        <th scope="col">TEACHER</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </thead>
+
+      {% for row in rows %}
+      <tr class="text-center">
+        <td class="text-nowrap">{{row['FIRST_NAME']}}</td>
+        <td class="text-nowrap">{{ row['LAST_NAME']}}</td>
+        <td class="text-nowrap">{{row['FATHER_NAME']}}</td>
+        <td class="text-nowrap">{{row['MOTHER_NAME']}}</td>
+        <td class="text-nowrap">{{row['PHONE']}}</td>
+        <td class="text-nowrap">{{ row['AGE']}}</td>
+        <td class="text-nowrap">{{row['GPA']}}</td>
+        <td class="text-nowrap">{{row['CURRENT_ADDRESS']}}</td>
+        <td class="text-nowrap">{{row['CITY']}}</td>
+        <td class="text-nowrap">{{ row['PIN']}}</td>
+        <td class="text-nowrap">{{row['TEACHER_ID']}}</td>
+        <td>
+          <form action="/edit/{{row['ID']}}" method="post">
+            <button type="submit" class="btn btn-outline-info border-0">
+              <i class="fa fa-pencil-square" aria-hidden="true"></i>
+            </button>
+          </form>
+        </td>
+        <td>
+          <form action="/delete/{{row['ID']}}" method="post">
+            <button type="submit" class="btn btn-outline-danger border-0">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}

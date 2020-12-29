@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block title %}Add New Student{% endblock %} {%
+block head %} {{ super() }} {% endblock %} {% block content %}
+
+<div class="row">
+  <div class="col-12">
+    <div class="signup-form">
+      <form action="{{ url_for('addrec') }}" method="POST">
+        <h2>Register</h2>
+        <div class="row justify-content-center">
+          <img src={{ url_for('static',filename='/images/writing.png') }}
+          class="img-fluid" alt="The racoon is glad">
+        </div>
+        <p class="hint-text text-uppercase text-primary">
+          Please add the student information. All Fields are mandatory.
+        </p>
+
+        <div class="row">
+          <div class="col-6">
+            {% for fld in range(1,7) %}
+            <div class="form-group">
+              <label class="text-info" for="{{fld}}"
+                >{{students_fields[fld] | replace("_", " ")}}</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="{{students_fields[fld]}}"
+                required="required"
+              />
+            </div>
+            {% endfor %}
+          </div>
+
+          <div class="col-6">
+            {% for fld in range(7,12) %}
+            <div class="form-group">
+              <label class="text-info" for="{{fld}}"
+                >{{students_fields[fld] | replace("_", " ")}}</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="{{students_fields[fld]}}"
+                required="required"
+              />
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-success btn-lg btn-block">
+            Register Profile
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

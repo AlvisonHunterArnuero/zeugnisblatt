@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block title %}Query Results{% endblock %} {% block
+head %} {{ super() }} {% endblock %} {% block content %}
+
+<div class="{{alertType}} w-100" role="alert">
+  <div class="row h-100 justify-content-center">
+    <div class="col-6 align-self-center">
+      <h4 class="text-secondary">{{ msg }}</h4>
+      <a class="btn btn-lg btn-primary" href="/list">Home Page</a>
+    </div>
+
+    <div class="col-6">
+      {% if alertType == 'align-middle alert alert-primary' %} <img src={{
+      url_for('static',filename='/images/glad.png') }} class="img-fluid"
+      alt="The racoon is glad"> {% else %} <img src={{
+      url_for('static',filename='/images/mad.png') }} class="img-fluid" alt="The
+      racoon is mega sad"> {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

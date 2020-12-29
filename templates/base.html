@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% block head %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+    />
+    <title>Das Zeugnisblatt Flask Page</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='style.css') }}"
+    />
+    {% endblock %}
+  </head>
+  <body class="m-0 p-0">
+    <!-- Navigation for the new content -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container">
+        <a class="nav-link active text-uppercase" href="/"
+          ><i class="fa fa-home" aria-hidden="true"></i> Das Zeugnisblatt</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/enternew"
+                ><i class="fa fa-user-plus" aria-hidden="true"></i> Add
+                Student<span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/list"
+                ><i class="fa fa-th-list" aria-hidden="true"></i> Student's
+                List</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/" tabindex="-1" aria-disabled="true"
+                ><i class="fa fa-book" aria-hidden="true"></i> Add class</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="/staff"
+                tabindex="-1"
+                aria-disabled="true"
+                ><i class="fa fa-book" aria-hidden="true"></i> View Staff</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- main content goes here -->
+    <div class="col-12 m-0">
+      <!-- Page Content breadcrumbs-->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {% block title %}{% endblock %}
+          </li>
+        </ol>
+      </nav>
+
+      <div class="container-fluid d-flex h-100">
+        <div class="row justify-content-center mx-auto">
+          <!-- beginning of flash alert -->
+          <div class="container-fluid lead">
+            {% with messages = get_flashed_messages(with_categories=true) %} {%
+            if messages %} {% for category, message in messages %}
+            <div
+              class="{{ category }} alert-dismissible fade show"
+              role="alert"
+            >
+              {% if category=='align-middle alert alert-primary' %}
+              <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+              {% else %}
+              <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+              {% endif %}
+
+              <span> {{ message }}</span>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            {% endfor %} {% endif %} {% endwith %}
+          </div>
+          <!-- end of flash alert -->
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>
+    <!-- main content ends here -->
+  </body>
+</html>

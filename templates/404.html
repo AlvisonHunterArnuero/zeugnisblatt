@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block header %} {% block title %} 404 - Page Not
+Found{% endblock %} {% endblock %} {% block content %}
+
+<h1 class="display-3 text-warning">Uh Oh, this page does not exist!</h1>
+<h4 class="text-info">
+  What you were looking for is just not there. Is there any chance you were
+  looking for this?
+</h4>
+<h5 class="text-uppercase text-center my-3">
+  <a href="{{ url_for('home') }}"
+    ><i class="fa fa-home" aria-hidden="true"></i> Go to Home page</a
+  >
+</h5>
+{% endblock %}

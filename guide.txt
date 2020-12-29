@@ -1,0 +1,68 @@
+To run and start this app locally once is installed, we do as follows:
+
+- move to the folder where the app is located.
+- get into the env folder on your app, in this case is "venv"
+- activate the virtual environment with this command:
+source bin/activate
+
+Then, you can actually proceed to run the application.
+$ export FLASK_APP=sample_app
+$ flask run
+
+Optionally you can set FLASK_ENV=development like this:
+$ FLASK_APP=app.py FLASK_ENV=development flask run
+
+Afterwards, point your browser to http://127.0.0.1:5000/ or the localhost:5000, then check out the source. Enjoy it, folks!
+
+NOTE TO INSTALL A FLASK APP FROM SCRATCH:
+
+First things first, let’s get a working directory set up:
+
+$ mkdir <your-app-name> && cd <your-app-name>
+Initialize a new git repo within your working directory:
+$ git init
+
+Set up a virtual environment to use for our application:
+$ python3 -m venv env
+$ source env/bin/activate
+
+You should now see you (env) to the left of the prompt in the terminal,
+indicating that you are now working in a virtual environment.
+
+In order to leave your virtual environment, just run deactivate, and then
+run source env/bin/activate when you are ready to work on your project again.
+
+Next we’re going to get our basic structure for our app set up. Add the following files to your “flask-by-example” folder:
+$ touch app.py .gitignore README.md requirements.txt
+
+This will give you the following structure:
+
+├── .gitignore
+├── app.py
+├── README.md
+└── requirements.txt
+
+Be sure to update the .gitignore file from the repo.
+
+Next install Flask:
+$ python -m pip install Flask==1.1.1
+
+Add the installed libraries to our requirements.txt file:
+$ python -m pip freeze > requirements.txt
+
+Open up app.py in your favorite editor and add the following code:
+
+from flask import Flask
+app = Flask(__name__)
+
+
+@app.route('/')
+def hello():
+    return "Hello World!"
+
+if __name__ == '__main__':
+    app.run()
+Run the app:
+
+$ python app.py
+And you should see your basic “Hello world” app in action on http://localhost:5000/. Kill the server when done.

@@ -1,0 +1,63 @@
+{% extends "base.html" %} {% block title %}Add New Student{% endblock %} {%
+block head %} {{ super() }} {% endblock %} {% block content %}
+
+<div class="row">
+  <div class="col-12">
+    <div class="signup-form">
+      <form action="{{ url_for('updaterec') }}" method="POST">
+        <input type="hidden" id="custId" name="ID" value="{{ID}}" />
+        <h2>Edit</h2>
+        <div class="row justify-content-center">
+          <img src={{ url_for('static',filename='/images/writing.png') }}
+          class="img-fluid" alt="The racoon is glad">
+        </div>
+        <p class="hint-text text-uppercase text-secondary small">
+          Please edit the student information as needed. All Fields are
+          mandatory.
+        </p>
+
+        <div class="row">
+          <div class="col-6">
+            {% for k,v in selected_student.items() %}
+            <div class="form-group">
+              <label class="text-info" for="{{k}}"
+                >{{k | replace("_", " ")}}</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="{{k}}"
+                value="{{v}}"
+                required="required"
+              />
+            </div>
+            {% if k == 'AGE' %}
+          </div>
+          <div class="col-6">{% endif %} {% endfor %}</div>
+
+          <!-- <div class="col-6">
+            {% for elem in range(7,12) %}
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="{{selected_student[elem]}}"
+                value="{{selected_student[elem]}}"
+                required="required"
+              />
+            </div>
+            {% endfor %}
+          </div> -->
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-success btn-lg btn-block">
+            Update Profile
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
